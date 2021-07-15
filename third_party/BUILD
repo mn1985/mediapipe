@@ -113,6 +113,8 @@ cmake_external(
         "WITH_PNG": "ON",
         "WITH_TIFF": "ON",
         "WITH_WEBP": "OFF",
+        "ENABLE_NEON": "OFF",
+        "WITH_TENGINE": "OFF",
         # Optimization flags
         "CV_ENABLE_INTRINSICS": "ON",
         "WITH_EIGEN": "ON",
@@ -296,20 +298,10 @@ java_plugin(
     ],
 )
 
-java_plugin(
-    name = "autobuilder_plugin",
-    processor_class = "com.google.auto.value.processor.AutoBuilderProcessor",
-    deps = [
-        "@maven//:com_google_auto_value_auto_value",
-        "@maven//:com_google_auto_value_auto_value_annotations",
-    ],
-)
-
 java_library(
     name = "autovalue",
     exported_plugins = [
         ":autovalue_plugin",
-        ":autobuilder_plugin",
     ],
     neverlink = 1,
     exports = [
